@@ -24,6 +24,8 @@
     
     <content type="html"><![CDATA[<p>经过今天几个小时的研究，我的这个小站也算是可以正常访问了（捂脸笑）。其实刚开始的时候进行的挺顺利的，就是在hexo往github上部署的时候出了点问题。<br>我是在网上搜索的教程来进行这个小站的创建的，但是并没有严格按照教程上说的先配置ssh密钥，而是把这一步跳过，先各种配置hexo然后在init hexo，这样做的结果就是静态页面上不到github上面去，最后在各种找答案无果的情况下，把刚才init相关的git配置都删除了，然后配置密钥后再链接，然后成功了，无奈，浪费好多时间。<br>这个先是记录一下。然后再去弄点好的主题。 </p>
 <p>   哈哈先这样吧！！</p>
+<hr>
+<p>欢迎转载，但转载请注明出处，谢谢！<br>本文链接：<a href="http://zhaoyunkang.com/2017/02/23/postName/">http://zhaoyunkang.com/2017/02/23/postName/</a></p>
 ]]></content>
     
     <summary type="html">
