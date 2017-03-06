@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://zhaoyunkang.com/images/domain-service.jpg">
 <meta property="og:image" content="http://zhaoyunkang.com/images/google-analytics.jpg">
 <meta property="og:image" content="http://zhaoyunkang.com/images/custom-img.jpg">
-<meta property="og:updated_time" content="2017-03-03T09:55:05.614Z">
+<meta property="og:updated_time" content="2017-03-06T02:29:39.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在github上安装Hexo过程中遇到的坑">
 <meta name="twitter:description" content="概要趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。
@@ -403,7 +403,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/03/03/hexo-pit/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/03/hexo-pit/" itemprop="commentCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/03/hexo-pit/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -467,7 +467,7 @@ a.dnspod.com
 b.dnspod.com
 c.dnspod.com
 </code></pre><p><img src="/images/domain-service.jpg" alt=""></p>
-<h1 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h1><p>刚开始用的是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>，然后发现多说上面问题挺多的，我自己就发现好多次评论插件加载不出来。后来用的是<a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a>，但是这个对于不会搭梯子的人也还有个很大的缺陷，就是在国内好多地方被墙了。。。<br>但是我还是选择了这个。可以邮件提醒有人评论了自己的什么文章，多说应该也行，但是 不想折腾了，就凭经常蹦这一点，多说就被我排除了。</p>
+<h1 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h1><p>刚开始用的是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>，然后发现多说上面问题挺多的，我自己就发现好多次评论插件加载不出来。后来用的是<a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a>，但是这个对于不会搭梯子的人也还有个很大的缺陷，就是在国内好多地方被墙了。。。<br>但是我还是选择了这个。可以邮件提醒有人评论了自己的什么文章，多说应该也行。最后，还是用多说吧 (⊙﹏⊙)b</p>
 <h1 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h1><p>试了一下<a href="https://swiftype.com/" target="_blank" rel="external">Swiftype</a>最后发现自带的搜索<code>Local Search</code>也挺给力的，果断换之。</p>
 <h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><p>百度统计和谷歌统计都加了，百度统计好加，谷歌统计就有点尴尬了，这是官网配置截图：<br><img src="/images/google-analytics.jpg" alt=""><br>我复制的时候是从UA-后边复制的，格式是XXXXXXXX-X，发现好像根本就不能统计到，然后再试XXXXXXXX，还是不行，搞的都想放弃谷歌统计了，突然想到把UA加上，最后把UA加在前边，格式为UA-XXXXXXXX-X。然后就好了，哈哈  可能还是我自己理解能力有问题。【认真脸】</p>
 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>还有个问题暂时还没找见解决办法。。。谁告诉我这个图标怎么换：<br><img src="/images/custom-img.jpg" alt=""></p>
@@ -564,11 +564,8 @@ c.dnspod.com
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+      <div class="ds-thread" data-thread-key="2017/03/03/hexo-pit/"
+           data-title="在github上安装Hexo过程中遇到的坑" data-url="http://zhaoyunkang.com/2017/03/03/hexo-pit/">
       </div>
     
   </div>
@@ -831,38 +828,36 @@ c.dnspod.com
 
   
 
-
-
+  
+    
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'yigeor';
-      var disqus_identifier = '2017/03/03/hexo-pit/';
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yigeor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
-      var disqus_title = "在github上安装Hexo过程中遇到的坑";
-
-
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-
-      
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-
-    </script>
   
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
 
 
 
