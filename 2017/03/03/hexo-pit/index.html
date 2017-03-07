@@ -99,16 +99,16 @@
 <meta property="og:site_name" content="YigeOr's Notes">
 <meta property="og:description" content="概要趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。
 代码上传不到github像我上一篇讲到的那个，下载好hexo和nodejs后没有配置相应的ssh公钥，所以init初始化的时候用的是我以前的配置文件（以前在电脑上搞过github），所以配置文件不对导致上传不上去，最后配置好ssh文件并保存到自己github上之后再初始化就可以上传静态page了。">
-<meta property="og:image" content="http://zhaoyunkang.com/images/githubcname.jpg">
-<meta property="og:image" content="http://zhaoyunkang.com/images/domain-service.jpg">
-<meta property="og:image" content="http://zhaoyunkang.com/images/google-analytics.jpg">
-<meta property="og:image" content="http://zhaoyunkang.com/images/custom-img.jpg">
-<meta property="og:updated_time" content="2017-03-06T08:14:22.577Z">
+<meta property="og:image" content="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/githubcname.png">
+<meta property="og:image" content="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/domain-service.png">
+<meta property="og:image" content="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/google-analytics.png">
+<meta property="og:image" content="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/custom-img.png">
+<meta property="og:updated_time" content="2017-03-07T05:50:54.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在github上安装Hexo过程中遇到的坑">
 <meta name="twitter:description" content="概要趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。
 代码上传不到github像我上一篇讲到的那个，下载好hexo和nodejs后没有配置相应的ssh公钥，所以init初始化的时候用的是我以前的配置文件（以前在电脑上搞过github），所以配置文件不对导致上传不上去，最后配置好ssh文件并保存到自己github上之后再初始化就可以上传静态page了。">
-<meta name="twitter:image" content="http://zhaoyunkang.com/images/githubcname.jpg">
+<meta name="twitter:image" content="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/githubcname.png">
 
 
 
@@ -471,17 +471,16 @@ Template render error: (unknown path) [Line 7, Column 23]
     at Promise._settlePromise (E:\test\blog\node_modules\bluebird\js\release\promise.js:567:18)
 ……
 </code></pre><p>去检查配置的时候发现了由于我刚刚在进行主题配置的时候顺手就把站点配置里边的时区配置给改了。原来是这个样子<code>timezone: Asia/Shanghai</code>我给顺手改成了<code>timezone: Asia/Beijing</code>话说咱们不是东八区吗。:-D 改回上海就好了！</p>
-<h1 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h1><p>我的域名是在<a href="https://sg.godaddy.com/zh/" target="_blank" rel="external">狗爹</a>上买的。首先去github上配置CNAME，也就是设置里的<code>Custom domain</code>如下图：<br><img src="/images/githubcname.jpg" alt=""><br>然后在网上找了下资料，发现需要得到github的ip地址（由于我的github用户名是：yigeor，所以在本机<code>ping yigeor.github.io</code>得到域名），然后配置到域名解析里边。<br>然后。。。然后访问zhaoyunkang.com访问不到，访问yigeor.github.io也不行了，有句mmp讲了N遍。试过用CNAME配置@和www直接指向yigeor.github.io不行，用A直配置@和www指向yigeor.github.io不行，用CNAME和A直接指向ip也不行，直接在域管理里边转到yigeor.github.io还是不行。最后折腾来折腾去，发现还是域名解析的问题。狗爹的默认域名服务器是国外的，然后我弄了个代理，设置全局模式，发现可以解析了（配置：A配置的@和www直接指向ip）。。<br>这个不设置代理就访问不到有点坑了，然后就改了域名服务器，改到了<a href="https://www.dnspod.com" target="_blank" rel="external">DNSPOD</a>上，域名服务器配置如下：</p>
+<h1 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h1><p>我的域名是在<a href="https://sg.godaddy.com/zh/" target="_blank" rel="external">狗爹</a>上买的。首先去github上配置CNAME，也就是设置里的<code>Custom domain</code>如下图：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/githubcname.png" alt=""><br>然后在网上找了下资料，发现需要得到github的ip地址（由于我的github用户名是：yigeor，所以在本机<code>ping yigeor.github.io</code>得到域名），然后配置到域名解析里边。<br>然后。。。然后访问zhaoyunkang.com访问不到，访问yigeor.github.io也不行了，有句mmp讲了N遍。试过用CNAME配置@和www直接指向yigeor.github.io不行，用A直配置@和www指向yigeor.github.io不行，用CNAME和A直接指向ip也不行，直接在域管理里边转到yigeor.github.io还是不行。最后折腾来折腾去，发现还是域名解析的问题。狗爹的默认域名服务器是国外的，然后我弄了个代理，设置全局模式，发现可以解析了（配置：A配置的@和www直接指向ip）。。<br>这个不设置代理就访问不到有点坑了，然后就改了域名服务器，改到了<a href="https://www.dnspod.com" target="_blank" rel="external">DNSPOD</a>上，域名服务器配置如下：</p>
 <pre><code>域名服务器
 a.dnspod.com
 b.dnspod.com
 c.dnspod.com
-</code></pre><p><img src="/images/domain-service.jpg" alt=""></p>
+</code></pre><p><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/domain-service.png" alt=""></p>
 <h1 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h1><p>刚开始用的是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>，然后发现多说上面问题挺多的，我自己就发现好多次评论插件加载不出来。后来用的是<a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a>，但是这个对于不会搭梯子的人也还有个很大的缺陷，就是在国内好多地方被墙了。。。<br>但是我还是选择了这个。可以邮件提醒有人评论了自己的什么文章，多说应该也行。最后，还是用多说吧 (⊙﹏⊙)b</p>
 <h1 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h1><p>试了一下<a href="https://swiftype.com/" target="_blank" rel="external">Swiftype</a>最后发现自带的搜索<code>Local Search</code>也挺给力的，果断换之。</p>
-<h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><p>百度统计和谷歌统计都加了，百度统计好加，谷歌统计就有点尴尬了，这是官网配置截图：<br><img src="/images/google-analytics.jpg" alt=""><br>我复制的时候是从UA-后边复制的，格式是XXXXXXXX-X，发现好像根本就不能统计到，然后再试XXXXXXXX，还是不行，搞的都想放弃谷歌统计了，突然想到把UA加上，最后把UA加在前边，格式为UA-XXXXXXXX-X。然后就好了，哈哈  可能还是我自己理解能力有问题。【认真脸】</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>还有个问题暂时还没找见解决办法。。。谁告诉我这个图标怎么换：<br><img src="/images/custom-img.jpg" alt=""></p>
-<p><br><br><em>暂时能想到的就是这些，如果有什么不对的地方，欢迎大家相互交流，相互学习！！</em></p>
+<h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><p>百度统计和谷歌统计都加了，百度统计好加，谷歌统计就有点尴尬了，这是官网配置截图：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/google-analytics.png" alt=""><br>我复制的时候是从UA-后边复制的，格式是XXXXXXXX-X，发现好像根本就不能统计到，然后再试XXXXXXXX，还是不行，搞的都想放弃谷歌统计了，突然想到把UA加上，最后把UA加在前边，格式为UA-XXXXXXXX-X。然后就好了，哈哈  可能还是我自己理解能力有问题。【认真脸】</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>还有个问题暂时还没找见解决办法。。。谁告诉我这个图标怎么换：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/custom-img.png" alt=""><br><br><br><em>暂时能想到的就是这些，如果有什么不对的地方，欢迎大家相互交流，相互学习！！</em></p>
 <hr>
 <p>欢迎转载，转载请注明出处，谢谢！<br>本文链接：<a href="http://zhaoyunkang.com/2017/03/03/hexo-pit/">http://zhaoyunkang.com/2017/03/03/hexo-pit/</a></p>
 
