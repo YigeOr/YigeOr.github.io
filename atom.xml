@@ -53,10 +53,9 @@
     <link href="http://zhaoyunkang.com/2017/03/03/hexo-pit/"/>
     <id>http://zhaoyunkang.com/2017/03/03/hexo-pit/</id>
     <published>2017-03-03T02:01:27.000Z</published>
-    <updated>2017-03-07T06:14:35.610Z</updated>
+    <updated>2017-03-07T06:59:46.719Z</updated>
     
-    <content type="html"><![CDATA[<p>[TOC]<br>(TOC)<br>{TOC}<br>toc<br>[toc]</p>
-<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。</p>
+    <content type="html"><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。</p>
 <h1 id="代码上传不到github"><a href="#代码上传不到github" class="headerlink" title="代码上传不到github"></a>代码上传不到github</h1><p>像我上一篇讲到的那个，下载好hexo和nodejs后没有配置相应的ssh公钥，所以init初始化的时候用的是我以前的配置文件（以前在电脑上搞过github），所以配置文件不对导致上传不上去，最后配置好ssh文件并保存到自己github上之后再初始化就可以上传静态page了。</p>
 <h1 id="用hexo-g命令报错"><a href="#用hexo-g命令报错" class="headerlink" title="用hexo g命令报错"></a>用hexo g命令报错</h1><p>我用的是NexT.Mist主题，照着<a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">Next主题配置网站</a> 配置主题后发现加载主题报错，然后就开始纠结了。<br>出错提示：</p>
 <pre><code>FATAL (unknown path) [Line 7, Column 23]
@@ -86,15 +85,19 @@ c.dnspod.com
 <h1 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h1><p>刚开始用的是<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>，然后发现多说上面问题挺多的，我自己就发现好多次评论插件加载不出来。后来用的是<a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a>，但是这个对于不会搭梯子的人也还有个很大的缺陷，就是在国内好多地方被墙了。。。<br>但是我还是选择了这个。可以邮件提醒有人评论了自己的什么文章，多说应该也行。最后，还是用多说吧 (⊙﹏⊙)b</p>
 <h1 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h1><p>试了一下<a href="https://swiftype.com/" target="_blank" rel="external">Swiftype</a>最后发现自带的搜索<code>Local Search</code>也挺给力的，果断换之。</p>
 <h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><p>百度统计和谷歌统计都加了，百度统计好加，谷歌统计就有点尴尬了，这是官网配置截图：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/google-analytics.png" alt=""><br>我复制的时候是从UA-后边复制的，格式是XXXXXXXX-X，发现好像根本就不能统计到，然后再试XXXXXXXX，还是不行，搞的都想放弃谷歌统计了，突然想到把UA加上，最后把UA加在前边，格式为UA-XXXXXXXX-X。然后就好了，哈哈  可能还是我自己理解能力有问题。【认真脸】</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>还有个问题暂时还没找见解决办法。。。谁告诉我这个图标怎么换：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/custom-img.png" alt=""><br><br><br><em>暂时能想到的就是这些，如果有什么不对的地方，欢迎大家相互交流，相互学习！！</em></p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>还有个问题暂时还没找见解决办法。。。谁告诉我这个图标怎么换：<br><img src="http://i1174.photobucket.com/albums/r601/YigeOr/Blog_Img/custom-img.png" alt=""></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>上边这个问题解决了，偶然看见配置文件里的一行代码，制作一个文件<code>favicon.ico</code>就好了，配置如下：</p>
+<pre><code># Put your favicon.ico into `hexo-site/source/` directory.
+favicon: /favicon.ico
+</code></pre><p><br><br><em>暂时能想到的就是这些，如果有什么不对的地方，欢迎大家相互交流，相互学习！！</em></p>
 <hr>
 <p>欢迎转载，转载请注明出处，谢谢！<br>本文链接：<a href="http://zhaoyunkang.com/2017/03/03/hexo-pit/">http://zhaoyunkang.com/2017/03/03/hexo-pit/</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;[TOC]&lt;br&gt;(TOC)&lt;br&gt;{TOC}&lt;br&gt;toc&lt;br&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;概要&quot;&gt;&lt;a href=&quot;#概要&quot; class=&quot;headerlink&quot; title=&quot;概要&quot;&gt;&lt;/a&gt;概要&lt;/h1&gt;&lt;p&gt;趁着还没忘干净，首先先说一下，创建github
+      &lt;h1 id=&quot;概要&quot;&gt;&lt;a href=&quot;#概要&quot; class=&quot;headerlink&quot; title=&quot;概要&quot;&gt;&lt;/a&gt;概要&lt;/h1&gt;&lt;p&gt;趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。&lt;/p&gt;
+&lt;h1 id=&quot;代码上传不到git
     
     </summary>
     
