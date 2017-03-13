@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhaoyunkang.com/"/>
-  <updated>2017-03-13T03:24:26.605Z</updated>
+  <updated>2017-03-13T03:27:46.527Z</updated>
   <id>http://zhaoyunkang.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhaoyunkang.com/2017/03/13/jq-select-change/"/>
     <id>http://zhaoyunkang.com/2017/03/13/jq-select-change/</id>
     <published>2017-03-13T03:11:55.000Z</published>
-    <updated>2017-03-13T03:24:26.605Z</updated>
+    <updated>2017-03-13T03:27:46.527Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于项目需要，所以需要搞一个动态加载的下拉框的默认选定功能，下拉框总共有两级。</p>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>首先通过<code>ajax</code>同步获取下拉框信息：</p>
@@ -100,8 +100,6 @@
       <category term="jquery" scheme="http://zhaoyunkang.com/tags/jquery/"/>
     
       <category term="下拉框" scheme="http://zhaoyunkang.com/tags/%E4%B8%8B%E6%8B%89%E6%A1%86/"/>
-    
-      <category term="select" scheme="http://zhaoyunkang.com/tags/select/"/>
     
   </entry>
   
