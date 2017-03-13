@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhaoyunkang.com/"/>
-  <updated>2017-03-07T05:50:56.978Z</updated>
+  <updated>2017-03-13T03:24:26.605Z</updated>
   <id>http://zhaoyunkang.com/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手动触发动态加载的一二级下拉框(select)的change属性</title>
+    <link href="http://zhaoyunkang.com/2017/03/13/jq-select-change/"/>
+    <id>http://zhaoyunkang.com/2017/03/13/jq-select-change/</id>
+    <published>2017-03-13T03:11:55.000Z</published>
+    <updated>2017-03-13T03:24:26.605Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于项目需要，所以需要搞一个动态加载的下拉框的默认选定功能，下拉框总共有两级。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>首先通过<code>ajax</code>同步获取下拉框信息：</p>
+<pre><code>$.ajax({
+    async: false,
+    type: &quot;GET&quot;,
+    url: &quot;../../message/*******&quot;,
+    dataType: &quot;json&quot;,
+    error: function () {
+        alert(&apos;请求失败&apos;);
+    },
+    success: function (data) {
+        for (var i = 0; i &lt; data.length; i++) {
+            $(&quot;#categoryOne&quot;).append(&quot;&lt;option value=&apos;&quot; + data[i].cId + &quot;&apos; &gt;&quot; + data[i].cCategoryName + &quot;&lt;/option&gt;&quot;);
+        }
+    }
+});
+</code></pre><p>然后设置一级下拉框属性：</p>
+<pre><code>$(&apos;#categoryOne&apos;).val(&apos;${articleInfo.cOneCategoryId}&apos;);
+</code></pre><p>再就是设置一级下拉框的<code>change</code>属性：</p>
+<pre><code>$(&quot;#categoryOne&quot;).change(function () {
+    var parentId = $(&quot;#categoryOne&quot;).val();
+    if (parentId == 0) {
+        parentId = -1;
+    }
+    $.ajax({
+        async: false,
+        type: &quot;GET&quot;,
+        url: &quot;../../message/*******&quot;,
+        data: &quot;parentId=&quot;+parentId,
+        dataType: &quot;json&quot;,
+        error: function () {
+            alert(&apos;请求失败&apos;);
+        },
+        success: function (data) {
+            $(&quot;#categoryTwo&quot;).html(&apos;&lt;option value=&quot;-1&quot;&gt;二级类目&lt;/option&gt;&apos;);
+            for (var i = 0; i &lt; data.length; i++) {
+                $(&quot;#categoryTwo&quot;).append(&quot;&lt;option value=&apos;&quot; + data[i].cId + &quot;&apos; &gt;&quot; + data[i].cCategoryName + &quot;&lt;/option&gt;&quot;);
+            }
+        }
+    });
+});
+</code></pre><p>然后就是触发一级下拉框的<code>change</code>属性：</p>
+<pre><code>$(&quot;#categoryOne&quot;).trigger(&apos;change&apos;);
+</code></pre><p>最后就是设置二级下拉框属性：</p>
+<pre><code>$(&apos;#categoryTwo&apos;).val(&apos;${articleInfo.cTwoCategoryId}&apos;);
+</code></pre><p>下边是一二级下拉框的定义：</p>
+<pre><code>&lt;tr&gt;
+    &lt;td style=&quot;text-align: right;font-weight: bold;color: #369;&quot;&gt;一级类目&lt;font color=&quot;red&quot;&gt;*&lt;/font&gt;：&lt;/td&gt;
+    &lt;td&gt;
+        &lt;select name=&quot;categoryOne&quot; id=&quot;categoryOne&quot; style=&quot;width: 100px;&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;一级类目&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/td&gt;
+    &lt;td style=&quot;text-align: right;font-weight: bold;color: #369;&quot;&gt;二级类目&lt;font color=&quot;red&quot;&gt;*&lt;/font&gt;：&lt;/td&gt;
+    &lt;td&gt;
+        &lt;select name=&quot;categoryTwo&quot; id=&quot;categoryTwo&quot; style=&quot;width: 100px;&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;二级类目&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre><h1 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h1><p>要使<code>$(&quot;#categoryOne&quot;).trigger(&#39;change&#39;);</code>这个命令有作用就先得把一级下拉框的change定义了。我在网上查了好多资料，好像没有说要注意这点的。或许这个对于前端开发来说是常识吧，还是写接口快，网页搞起来微麻烦！XDDD</p>
+<hr>
+<p>欢迎转载，转载请注明出处，谢谢！<br>本文链接：<a href="http://zhaoyunkang.com/2017/03/13/jq-select-change/">http://zhaoyunkang.com/2017/03/13/jq-select-change/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;由于项目需要，所以需要搞一个动态加载的下拉框的默认选定功能，下拉框总共有两级。&lt;/p&gt;
+&lt;h1 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; 
+    
+    </summary>
+    
+      <category term="页面" scheme="http://zhaoyunkang.com/categories/%E9%A1%B5%E9%9D%A2/"/>
+    
+    
+      <category term="jquery" scheme="http://zhaoyunkang.com/tags/jquery/"/>
+    
+      <category term="下拉框" scheme="http://zhaoyunkang.com/tags/%E4%B8%8B%E6%8B%89%E6%A1%86/"/>
+    
+      <category term="select" scheme="http://zhaoyunkang.com/tags/select/"/>
+    
+  </entry>
   
   <entry>
     <title>我和谁都不争</title>
@@ -53,7 +143,7 @@
     <link href="http://zhaoyunkang.com/2017/03/03/hexo-pit/"/>
     <id>http://zhaoyunkang.com/2017/03/03/hexo-pit/</id>
     <published>2017-03-03T02:01:27.000Z</published>
-    <updated>2017-03-07T06:59:46.719Z</updated>
+    <updated>2017-03-07T07:02:04.778Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>趁着还没忘干净，首先先说一下，创建github上的代码仓库开始，到现在的安装过程和遇到的各种坑。</p>
 <h1 id="代码上传不到github"><a href="#代码上传不到github" class="headerlink" title="代码上传不到github"></a>代码上传不到github</h1><p>像我上一篇讲到的那个，下载好hexo和nodejs后没有配置相应的ssh公钥，所以init初始化的时候用的是我以前的配置文件（以前在电脑上搞过github），所以配置文件不对导致上传不上去，最后配置好ssh文件并保存到自己github上之后再初始化就可以上传静态page了。</p>
