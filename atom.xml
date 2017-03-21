@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhaoyunkang.com/"/>
-  <updated>2017-03-13T03:27:46.527Z</updated>
+  <updated>2017-03-21T09:28:03.242Z</updated>
   <id>http://zhaoyunkang.com/</id>
   
   <author>
@@ -14,6 +14,132 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java网络编程(Socket)</title>
+    <link href="http://zhaoyunkang.com/2017/03/21/java-socket/"/>
+    <id>http://zhaoyunkang.com/2017/03/21/java-socket/</id>
+    <published>2017-03-21T09:14:09.000Z</published>
+    <updated>2017-03-21T09:28:03.242Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、网络编程的主要问题："><a href="#一、网络编程的主要问题：" class="headerlink" title="一、网络编程的主要问题："></a>一、网络编程的主要问题：</h1><ol>
+<li>如何准确的定位网络上一台或者多台主机</li>
+<li>找到主机后如何可靠高效的传输数据</li>
+</ol>
+<h1 id="二、TCP（-Tranfer-Control-Protocol传输控制协议）"><a href="#二、TCP（-Tranfer-Control-Protocol传输控制协议）" class="headerlink" title="二、TCP（ Tranfer Control Protocol传输控制协议）"></a>二、TCP（ Tranfer Control Protocol传输控制协议）</h1><ol>
+<li>是面向连接、保证高可靠性(数据无丢失、数据无失序、数据无错误、数据无重复到达)传输层协议</li>
+<li>通过TCP协议传输，得到的是一个顺序的无差错的数据流</li>
+<li>传输效率较UDP低</li>
+<li>是面向连接的，有比较高的可靠性</li>
+</ol>
+<h1 id="三、UDP（User-Datagram-Protocol用户数据报协议）"><a href="#三、UDP（User-Datagram-Protocol用户数据报协议）" class="headerlink" title="三、UDP（User Datagram Protocol用户数据报协议）"></a>三、UDP（User Datagram Protocol用户数据报协议）</h1><ol>
+<li>是一个简单的面向数据报的运输层协议</li>
+<li>不提供可靠性，它只是把应用程序传给IP层的数据报发送出去，但是并不能保证它们能到达目的地</li>
+<li>传输效率高</li>
+<li>发送方所发送的数据报并不一定以相同的次序到达接收方</li>
+</ol>
+<h1 id="四、Socket"><a href="#四、Socket" class="headerlink" title="四、Socket"></a>四、Socket</h1><p>Socket可以说是一种针对网络的抽象，应用通过它可以来针对网络读写数据。根据TCP协议和UDP协议的不同，在网络编程方面就有面向两个协议的不同socket，一个是面向字节流的一个是面向报文的。<br>网络上的两个程序通过一个双向的通讯连接实现数据的交换，这个双向链路的一端称为一个Socket。Socket通常用来实现客户方和服务方的连接。 一个Socket由一个IP地址和一个端口号唯一确定。</p>
+<h1 id="五、Socket服务端"><a href="#五、Socket服务端" class="headerlink" title="五、Socket服务端"></a>五、Socket服务端</h1><ol>
+<li>构建一个ServerSocket实例，指定本地的端口。这个socket就是用来监听指定端口的连接请求的。 如：<br><code>ServerSocket server = new ServerSocket(8080);</code></li>
+<li>创建Socket并调用ServerSocket 的accept()方法来获得客户端的连接请求。通过accept()方法返回的socket实例，建立了一个和客户端的新连接。</li>
+<li>通过这个返回的socket实例获取InputStream和OutputStream,可以通过这两个流来分别读和写数据。</li>
+<li>调用Socket 实例的close()方法，关闭Socket。</li>
+</ol>
+<p>代码示例：</p>
+<pre><code>import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * @author Yige
+ * @create 2017-02-22 15:09
+ */
+public class ServerSocketCToS {
+    public static void main(String[] args) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(8080);
+            Socket socket = serverSocket.accept();
+//            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            boolean flag = true;
+            while (flag){
+                String enter = reader.readLine();
+                System.out.println(&quot;客户端：&quot; + enter);
+                if (&quot;233&quot;.equals(enter)){
+                    System.out.println(&quot;结束会话！&quot;);
+                    flag = false;
+                }
+            }
+            reader.close();
+            socket.close();
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><h1 id="六、Socket客户端"><a href="#六、Socket客户端" class="headerlink" title="六、Socket客户端"></a>六、Socket客户端</h1><ol>
+<li>构建Socket实例</li>
+<li>通过指定的远程服务器地址和端口来建立连接。如：<br><code>Socket socket = new Socket(&quot;localhost&quot;, 8080);</code></li>
+<li>通过Socket实例包含的InputStream和OutputStream来进行数据的读写。</li>
+<li>调用Socket实例的close方法，关闭Socket。</li>
+</ol>
+<p>代码示例：</p>
+<pre><code>import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+/**
+ * @author Yige
+ * @create 2017-02-22 15:09
+ */
+public class ClientSocketCToS {
+
+    public static void main(String[] args) {
+
+        try {
+            Socket socket = new Socket(&quot;127.0.0.1&quot;,8080);
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
+            String enter = in.readLine();
+            while (!&quot;233&quot;.equals(enter)){
+                printWriter.println(enter);
+                System.out.println(&quot;我(客户端)：&quot; + enter);
+                enter = in.readLine();
+            }
+            printWriter.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><p>上边的源码是一对一的！以后可以用多线程实现一个服务器对多个客户端！</p>
+<p><strong>PS：</strong>一些题外话：Socket编程好早就接触过了，然后就是照着书上把代码敲出来，过后就忘了。借着偶然看见的一些资料，在这里重新复习下。 </p>
+<p>学无止境，为我兔的星辰大海！</p>
+<p><strong>一些参考文档：</strong><br><a href="http://www.cnblogs.com/linzheng/archive/2011/01/23/1942328.html" target="_blank" rel="external">http://www.cnblogs.com/linzheng/archive/2011/01/23/1942328.html</a><br><a href="http://www.cnblogs.com/elgin-seth/p/5293713.html" target="_blank" rel="external">http://www.cnblogs.com/elgin-seth/p/5293713.html</a><br><a href="https://zhidao.baidu.com" target="_blank" rel="external">https://zhidao.baidu.com</a><br>……</p>
+<hr>
+<p>欢迎转载，转载请注明出处，谢谢！<br>本文链接：<a href="http://zhaoyunkang.com/2017/03/21/java-socket/">http://zhaoyunkang.com/2017/03/21/java-socket/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、网络编程的主要问题：&quot;&gt;&lt;a href=&quot;#一、网络编程的主要问题：&quot; class=&quot;headerlink&quot; title=&quot;一、网络编程的主要问题：&quot;&gt;&lt;/a&gt;一、网络编程的主要问题：&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;如何准确的定位网络上一台或者多台主机&lt;/li&gt;
+
+    
+    </summary>
+    
+      <category term="java" scheme="http://zhaoyunkang.com/categories/java/"/>
+    
+    
+      <category term="后端" scheme="http://zhaoyunkang.com/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>手动触发动态加载的一二级下拉框(select)的change属性</title>
